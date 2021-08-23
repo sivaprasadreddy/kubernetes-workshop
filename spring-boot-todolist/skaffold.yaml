@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta14
+kind: Config
+metadata:
+  name: spring-boot-todolist
+build:
+  artifacts:
+  - image: docker.io/sivaprasadreddy/spring-boot-todolist
+    #buildpacks:
+    #  builder: paketobuildpacks/builder:base
+    jib:
+      project: com.sivalabs:spring-boot-todolist
+deploy:
+  kubectl:
+    manifests:
+    - k8s/1-config.yaml
+    - k8s/2-postgresdb.yaml
+    - k8s/3-todolist-app.yaml
