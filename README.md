@@ -1,2 +1,2 @@
-# kubernetes-workshop
-Kubernetes Workshop samples
+# Kubernetes Workshop
+
