@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Bookmarks</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.css">
+    <link rel="stylesheet" href="/webjars/font-awesome/5.8.1/css/all.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand" href="/">Bookmarks</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+<div id="app" class="container">
+    <div style="padding-bottom: 20px;">
+        <div class="card">
+            <div class="card-header">
+                <h3 >Add Bookmark</h3>
+            </div>
+            <div class="card-body">
+                <form id="loginForm" @submit.prevent="saveBookmark" class="form-horizontal" role="form"
+                      cssStyle="width: 800px; margin: 0 auto;">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="text" id="title" name="title"
+                                   v-model="newBookmark.title"
+                                   class="form-control" placeholder="Title" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="text" id="url" name="url"
+                                   v-model="newBookmark.url"
+                                   class="form-control" placeholder="URL" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-4">
+                            <input type="submit" class="btn btn-primary pull-right"
+                                   value="Submit"/>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="alert alert-danger" role="alert" v-if="error">
+            <h3>{{error}}</h3>
+        </div>
+        <div class="alert alert-primary" role="alert" v-for="bm in bookmarks">
+            <h3 class="alert-heading">
+                <a v-bind:href="bm.url" target="_blank">{{bm.title}}</a>
+            </h3>
+
+            <p class="mt-1 mb-0">
+                <button type="button" class="btn btn-primary btn-sm"
+                        v-on:click="upvoteBookmark(bm.id)">{{bm.upVotes}} <i class="fas fa-thumbs-up"></i></button>
+                <button type="button" class="btn btn-danger btn-sm"
+                        v-on:click="downvoteBookmark(bm.id)">{{bm.downVotes}} <i class="fas fa-thumbs-down"></i></button>
+            </p>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-center">SivaLabs &copy; 2021</p>
+    </div>
+</footer>
+
+<script src="/webjars/jquery/3.5.1/jquery.js"></script>
+<script src="/webjars/popper.js/1.16.0/umd/popper.js"></script>
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.js"></script>
+<script src="/webjars/vue/2.5.16/vue.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

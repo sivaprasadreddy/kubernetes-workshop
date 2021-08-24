@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: bookmarks-ui
+
+  cloud:
+    gateway:
+      routes:
+        - id: bookmarks_route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/bookmarkssvc/**
+          filters:
+            - StripPrefix=1
+        - id: votes_route
+          uri: http://localhost:8082
+          predicates:
+            - Path=/votessvc/**
+          filters:
+            - StripPrefix=1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
