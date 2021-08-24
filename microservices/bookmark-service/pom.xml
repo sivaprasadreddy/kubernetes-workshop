@@ -163,6 +163,11 @@
                     <to>
                         <image>${dockerhub.username}/${project.artifactId}</image>
                     </to>
+                    <container>
+                        <ports>
+                            <port>8081</port>
+                        </ports>
+                    </container>
                 </configuration>
             </plugin>
         </plugins>

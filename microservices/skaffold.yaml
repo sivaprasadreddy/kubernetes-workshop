@@ -1,0 +1,26 @@
+apiVersion: skaffold/v2beta14
+kind: Config
+
+build:
+  artifacts:
+  - image: docker.io/sivaprasadreddy/vote-service
+    jib:
+      project: vote-service
+      args: [-DskipTests]
+  - image: docker.io/sivaprasadreddy/bookmark-service
+    jib:
+      project: bookmark-service
+      args: [-DskipTests]
+  - image: docker.io/sivaprasadreddy/bookmarks-ui
+    jib:
+       project: bookmarks-ui
+       args: [-DskipTests]
+deploy:
+  kubectl:
+    manifests:
+    - k8s/1-config.yaml
+    - k8s/2-bookmarks-postgresdb.yaml
+    - k8s/3-votes-postgresdb.yaml
+    - k8s/4-bookmark-service-app.yaml
+    - k8s/5-vote-service-app.yaml
+    - k8s/6-bookmarks-ui-app.yaml

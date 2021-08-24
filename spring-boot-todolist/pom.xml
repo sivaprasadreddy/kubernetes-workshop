@@ -161,6 +161,11 @@
                     <to>
                         <image>registry.hub.docker.com/sivaprasadreddy/spring-boot-todolist</image>
                     </to>
+                    <container>
+                        <ports>
+                            <port>8080</port>
+                        </ports>
+                    </container>
                 </configuration>
             </plugin>
         </plugins>

@@ -4,11 +4,11 @@ metadata:
   name: spring-boot-todolist
 build:
   artifacts:
-  - image: docker.io/sivaprasadreddy/spring-boot-todolist
+  - image: sivaprasadreddy/spring-boot-todolist
     #buildpacks:
     #  builder: paketobuildpacks/builder:base
     jib:
-      project: com.sivalabs:spring-boot-todolist
+      project: com.sivalabs.kubernetesworkshop:spring-boot-todolist
 deploy:
   kubectl:
     manifests:
