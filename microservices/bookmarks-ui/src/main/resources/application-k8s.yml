@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: bookmarks_route
+          uri: http://bookmark-service-svc:8081
+          predicates:
+            - Path=/bookmarkssvc/**
+          filters:
+            - StripPrefix=1
+        - id: votes_route
+          uri: http://vote-service-svc:8082
+          predicates:
+            - Path=/votessvc/**
+          filters:
+            - StripPrefix=1
