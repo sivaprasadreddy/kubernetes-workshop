@@ -10,6 +10,7 @@
     <name>kubernetes-workshop</name>
 
     <modules>
+        <module>k8s-boot-demo</module>
         <module>spring-boot-todolist</module>
         <module>microservices</module>
     </modules>
