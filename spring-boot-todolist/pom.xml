@@ -19,6 +19,7 @@
         <bootstrap.version>4.5.3</bootstrap.version>
         <font_awesome.version>5.8.1</font_awesome.version>
         <vue.version>2.5.16</vue.version>
+        <problem-spring-web.version>0.26.2</problem-spring-web.version>
         <dockerhub.username>sivaprasadreddy</dockerhub.username>
     </properties>
     <dependencies>
@@ -52,6 +53,11 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>problem-spring-web-starter</artifactId>
+            <version>${problem-spring-web.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

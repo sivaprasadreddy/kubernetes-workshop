@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-boot-demo-deployment-green
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: k8s-boot-demo
+      version: v2
+      color: green
+  template:
+    metadata:
+      labels:
+        app: k8s-boot-demo
+        version: v2
+        color: green
+    spec:
+      containers:
+        - name: k8s-boot-demo
+          image: sivaprasadreddy/k8s-boot-demo:v2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/readiness
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/liveness
+          startupProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/liveness
+            initialDelaySeconds: 5

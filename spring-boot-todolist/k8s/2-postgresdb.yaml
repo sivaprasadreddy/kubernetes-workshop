@@ -1,5 +1,17 @@
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /opt/mount/volumes
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: todolist-postgres-pv-claim
@@ -8,7 +20,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 4Gi
+      storage: 1Gi
 ---
 apiVersion: v1
 kind: Service

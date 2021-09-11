@@ -15,7 +15,7 @@
 	<properties>
 		<java.version>11</java.version>
         <dockerhub.username>sivaprasadreddy</dockerhub.username>
-        <docker.tag>v1</docker.tag>
+        <docker.tag>v2</docker.tag>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -58,10 +58,14 @@
                 <version>2.7.0</version>
                 <configuration>
                     <from>
-                        <image>gcr.io/distroless/java:11</image>
+                        <image>openjdk:11-jdk-slim</image>
                     </from>
                     <to>
-                        <image>${dockerhub.username}/${project.artifactId}:${docker.tag}</image>
+                        <image>${dockerhub.username}/${project.artifactId}</image>
+                        <tags>
+                            <tag>${docker.tag}</tag>
+                            <tag>latest</tag>
+                        </tags>
                     </to>
                     <container>
                         <ports>

@@ -1,6 +1,7 @@
 package com.sivalabs.todolist.todos;
 
 import java.util.List;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class TodoRestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Todo saveTodo(@RequestBody Todo todo) {
+    public Todo saveTodo(@RequestBody @Valid Todo todo) {
         return todoService.saveTodo(todo);
     }
 

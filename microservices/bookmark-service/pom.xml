@@ -11,7 +11,7 @@
     </parent>
     <groupId>com.sivalabs</groupId>
     <artifactId>bookmark-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>bookmark-service</name>
     <description>Bookmark Service</description>
     <properties>
@@ -158,10 +158,14 @@
                 <version>2.7.0</version>
                 <configuration>
                     <from>
-                        <image>gcr.io/distroless/java:11</image>
+                        <!--<image>gcr.io/distroless/java:11</image>-->
+                        <image>openjdk:11-jdk-slim</image>
                     </from>
                     <to>
                         <image>${dockerhub.username}/${project.artifactId}</image>
+                        <tags>
+                            <tag>${project.version}</tag>
+                        </tags>
                     </to>
                 </configuration>
             </plugin>

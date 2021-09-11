@@ -1,28 +1,24 @@
 package com.sivalabs.k8sbootdemo;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.InetAddress;
 import java.time.LocalDateTime;
-import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
 @Slf4j
 public class DemoController {
-
-    @Value("${app.version}")
-    private String version;
+    private final ApplicationProperties properties;
 
     @GetMapping({"", "/api/info"})
-    public Map<String, String> apiInfo()
+    public AppInfo apiInfo()
     {
         log.info("Request for apiInfo at : {}", LocalDateTime.now());
-        return Map.of("app", "K8S SpringBoot Demo",
-            "hostName", getHostname(),
-            "version", version);
+        return new AppInfo(properties.getVersion(), properties.getTitle(), getHostname());
     }
 
     @GetMapping("/api/terminate")
