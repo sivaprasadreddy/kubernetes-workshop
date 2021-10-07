@@ -1,0 +1,53 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-boot-demo-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    #ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+#  defaultBackend:
+#    service:
+#      name: default-service
+#      port:
+#        number: 80
+  rules:
+    -  host: "k8sdemo.com"
+       http:
+         paths:
+           - pathType: Prefix
+             path: "/v1"
+             backend:
+               service:
+                 name: k8s-boot-demo-v1-service
+                 port:
+                   number: 8080
+           - pathType: Prefix
+             path: "/v2"
+             backend:
+               service:
+                 name: k8s-boot-demo-v2-service
+                 port:
+                   number: 8080
+
+    - host: "api.k8sdemo-v1.com"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: k8s-boot-demo-v1-service
+                port:
+                  number: 8080
+
+    - host: "api.k8sdemo-v2.com"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: k8s-boot-demo-v2-service
+                port:
+                  number: 8080

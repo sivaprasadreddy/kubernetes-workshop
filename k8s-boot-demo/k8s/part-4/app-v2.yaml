@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-boot-demo-deployment
+  name: k8s-boot-demo-v2-deployment
 spec:
-  replicas: 6
+  replicas: 1
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: k8s-boot-demo
+      app: k8s-boot-demo-v2
   template:
     metadata:
       labels:
-        app: k8s-boot-demo
+        app: k8s-boot-demo-v2
     spec:
       containers:
-        - name: k8s-boot-demo
+        - name: k8s-boot-demo-v2
           image: sivaprasadreddy/k8s-boot-demo:v2
           imagePullPolicy: Always
           ports:
@@ -38,34 +38,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: k8s-boot-demo-service
+  name: k8s-boot-demo-v2-service
 spec:
   type: ClusterIP
   selector:
-    app: k8s-boot-demo
+    app: k8s-boot-demo-v2
   ports:
     - name: app-port-mapping
       protocol: TCP
       port: 8080
       targetPort: 8080
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: k8s-boot-demo-ingress
-  annotations:
-    #nginx.ingress.kubernetes.io/rewrite-target: /
-    ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  rules:
-    #- host: "k8sdemo.com"
-    -  http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: k8s-boot-demo-service
-                port:
-                  number: 8080
-
